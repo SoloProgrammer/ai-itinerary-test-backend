@@ -4,7 +4,6 @@ const cors = require('cors');
 
 const openAiRoutes = require('./routes/openAiRoutes')
 
-
 const PORT = process.env.PORT || 8080
 
 app.use(express.json())

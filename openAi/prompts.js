@@ -12,7 +12,7 @@ const generatePlacesPrompt = (days, country, state) => {
     `
 }
 
-const generateItineraryPromt = ({ country, startDate, endDate, state, place }) => {
+const generateItineraryPromt = ({ startDate, endDate, days, country, state, place }) => {
     return `
             User wants to travel to location ${place}
             Of Country: ${country} ${state ? `State: ${state}` : ""}
@@ -28,7 +28,7 @@ const generateItineraryPromt = ({ country, startDate, endDate, state, place }) =
             also provide the departure activity inside the last day of activities.
             Make one array that includes all itinerary days in the response json 
             Example response array for day1 itinerary:
-
+            Output must not be same as the example 
             [{
                 "date": "2023-06-29",
                 "day": "Day 1",
