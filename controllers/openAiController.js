@@ -90,7 +90,10 @@ const getItinerary = async (req, res) => {
                     // console.log(choices);
 
                     const parsedData = JSON.parse(choices[0].message?.content)
+
+                    // console.log(parsedData);
                     let data;
+
                     if (!Array.isArray(parsedData)) {
                         let { itinerary } = parsedData;
                         data = itinerary
