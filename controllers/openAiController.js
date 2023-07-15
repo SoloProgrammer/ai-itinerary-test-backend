@@ -7,7 +7,7 @@ const { default: axios } = require('axios');
 
 const getPlaces = async (req, res) => {
     const { country, state, days } = req.body;
-    if (!country || !state || !days) return badResponse(res, false, "Country, state and days all of 3 should passed with the req body!")
+    if (!country || !days) return badResponse(res, false, "Country, state and days all of 3 should passed with the req body!")
 
     const prompt = generatePlacesPrompt(days, country, state)
 
@@ -56,7 +56,7 @@ const getPlaces = async (req, res) => {
 
 const getItinerary = async (req, res) => {
     const { country, state, startDate, endDate, days, place } = req.body;
-    if (!startDate || !endDate || !country || !place) return badResponse(res, false, "Country, state, startDate, endDate and place all of 3 should passed with the req body!")
+    if (!startDate || !endDate || !country || !place) return badResponse(res, false, "Country, startDate, endDate and place all of 3 should passed with the req body!")
 
     const prompt = generateItineraryPromt(startDate, endDate, days, country, state, place)
 
