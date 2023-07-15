@@ -7,7 +7,6 @@ const getChatCompletionData = async (messages, model) => {
         const { data: completion } = await axios.post("https://api.openai.com/v1/chat/completions",
             {
                 model,
-                max_tokens: 2048,
                 temperature: 0.6,
                 messages,
             },

@@ -1,9 +1,7 @@
 const { badResponse, errorRespose } = require('../utils/badResponseStatus')
 const { generatePlacesPrompt, generateItineraryPromt } = require('../openAi/prompts');
 const { getChatCompletionData } = require('../openAi/openAiApi');
-const { gpt_turbo_model } = require('../openAi/constants');
-const { authHeaders } = require('../configs/openai');
-const { default: axios } = require('axios');
+const { gpt_turbo_model, gpt_turbo_model_16k } = require('../openAi/models');
 
 const getPlaces = async (req, res) => {
     const { country, state, days } = req.body;
@@ -74,7 +72,7 @@ const getItinerary = async (req, res) => {
     try {
 
         async function ChatCompletion() {
-            const { choices, error } = await getChatCompletionData(exampleMessage, gpt_turbo_model)
+            const { choices, error } = await getChatCompletionData(exampleMessage, gpt_turbo_model_16k)
 
             // console.log("-------------", error.response.data);
             
@@ -88,8 +86,10 @@ const getItinerary = async (req, res) => {
             else {
                 try {
                     // console.log(choices);
+                    console.log(choices);
 
                     const parsedData = JSON.parse(choices[0].message?.content)
+
 
                     // console.log(parsedData);
                     let data;
@@ -102,7 +102,7 @@ const getItinerary = async (req, res) => {
 
                     // console.log(data);
 
-                    res.status(200).json({ status: true, data, message: "Here are all places" })
+                    res.status(200).json({ status: true, data, message: `Your itinerary is ready` })
                 } catch (error) {
                     return errorRespose(res, false, error)
                 }
