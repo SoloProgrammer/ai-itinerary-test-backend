@@ -86,7 +86,6 @@ const getItinerary = async (req, res) => {
             else {
                 try {
                     // console.log(choices);
-                    console.log(choices);
 
                     const parsedData = JSON.parse(choices[0].message?.content)
 
